@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Street Light Dashboard</title>
+  
+  <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-messaging.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-functions.js"></script>
+
+  <!-- Leave out Storage -->
+  <!-- <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-storage.js"></script> -->
+
+  <script>
+    var config = {
+      // ...
+    };
+  firebase.initializeApp(config);
+  </script>
+  
+  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css'>
+</head>
+
+
+<body>
+
+  <div class="container">
+
+  <div class="header jumbotron text-center">
+    <h1 class="display-4"> <b>DASHBOARD</b> </h1> 
+  </div>
+
+  <div class="row text-center" id="row-1">
+
+    <div class="col-2">
+      <h6> Light-1 </h6> 
+    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" alt="light-photo" class="img-fluid" id="light-1"> 
+    </div>
+    
+    <div class="col-2">
+      <h6> Light-2 </h6>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" alt="light-photo" id="light-2" class="img-fluid"> 
+    </div>
+    
+    <div class="col-2">
+      <h6> Light-3 </h6>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" alt="light-photo" id="light-3"  class="img-fluid"> 
+    </div>
+    
+    <div class="col-2">
+      <h6> Light-4 </h6>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" alt="light-photo" id="light-4"  class="img-fluid"> 
+    </div>
+   </div>
+ </div>
+
+<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCkt29w3VwZLTVMPaW3oPQtVxHG9AJ6Kg8",
+    authDomain: "amariot-3df60.firebaseapp.com",
+    databaseURL: "https://amariot-3df60.firebaseio.com",
+    projectId: "amariot-3df60",
+    storageBucket: "amariot-3df60.appspot.com",
+    messagingSenderId: "1080829337840"
+  };
+  firebase.initializeApp(config);
+
+  var lightOnImageUrl = "https://bit.ly/2HrEeDV";
+  var lightOffImageUrl = "https://bit.ly/2Ju8zyn";
+
+  var dbRef1 = firebase.database().ref().child('Light-1');
+  dbRef1.on('value', snap => checkLight1Status(snap.val()));
+
+  var dbRef2 = firebase.database().ref().child('Light-2');
+  dbRef2.on('value', snap => checkLight2Status(snap.val()));
+
+  var dbRef3 = firebase.database().ref().child('Light-3');
+  dbRef3.on('value', snap => checkLight3Status(snap.val()));
+
+  var dbRef4 = firebase.database().ref().child('Light-4');
+  dbRef4.on('value', snap => checkLight4Status(snap.val()));
+
+ function checkLight1Status(status) {
+	var light1Image = document.getElementById("light-1");
+	if(status == "ON") {
+		light1Image.src = lightOnImageUrl;
+	} else {
+		light1Image.src = lightOffImageUrl;
+	}
+  }
+
+  function checkLight2Status(status) {
+	var light1Image = document.getElementById("light-2");
+	if(status == "ON") {
+		light1Image.src = lightOnImageUrl;
+	} else {
+		light1Image.src = lightOffImageUrl;
+	}
+  }
+
+  function checkLight3Status(status) {
+	var light1Image = document.getElementById("light-3");
+	if(status == "ON") {
+		light1Image.src = lightOnImageUrl;
+	} else {
+		light1Image.src = lightOffImageUrl;
+	}
+  }
+
+  function checkLight4Status(status) {
+	var light1Image = document.getElementById("light-4");
+	if(status == "ON") {
+		light1Image.src = lightOnImageUrl;
+	} else {
+		light1Image.src = lightOffImageUrl;
+	}
+  }
+
+</script>
+
+</body>
+
+</html>
